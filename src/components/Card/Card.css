@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Inter-medium';
+  src: url(./fonts/Inter-Medium.otf) format('oft');
+}
+
+.movie-card {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  width: 451px;
+  height: 279px;
+  display: flex;
+}
+
+.movie-card--poster {
+  display: block;
+  right: 0;
+  margin: 0;
+  height: 281;
+}
+
+
+
+
+.movie-card--info--genres {
+  margin-top: 10px;
+}
+
+.movie-card--info--description {
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+}
