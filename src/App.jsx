@@ -1,39 +1,29 @@
-
+import { Offline, Online } from 'react-detect-offline';
 import './App.css';
 import '../node_modules/antd/dist/reset.css';
-import { Space } from 'antd';
+import { Alert } from 'antd';
+import { useState } from 'react';
 
-import _Card from './components/Card/Card';
+import CardList from './components/CardList/CardList';
 
 function App() {
-  let cardsCount = 6;
-
+  const [error, setError] = useState(false);
+  const isErrors = (error) => {
+    setError(true);
+    console.log(error);
+  };
   return (
     <>
-      <div className="centered">
-        <Space
-          size={[32, 32]}
-          style={{
-            display: 'flex',
-          }}
-          wrap
-          className="cards"
-        >
-          <_Card id={0} />
-          <_Card id={1} />
-          <_Card id={2} />
-          <_Card id={3} />
-          <_Card id={4} />
-          <_Card id={5} />
-
-          <_Card id={6} />
-          <_Card id={7} />
-          <_Card id={8} />
-          <_Card id={9} />
-          <_Card id={10} />
-          <_Card id={11} />
-        </Space>
-      </div>
+      <Online>
+        {error ? (
+          <Alert style={{fontSize: 48}} message="Something went wrong..." type="error" />
+        ) : (
+          <CardList numberOfCards={20} page={1} isErrors={isErrors} />
+        )}
+      </Online>
+      <Offline>
+        <h1>Seems like you are offline -_-</h1>
+      </Offline>
     </>
   );
 }

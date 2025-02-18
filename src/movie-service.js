@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
 export default class MovieDBService {
-  _apiBaseRated = 'https://api.themoviedb.org/3/movie/top_rated'
+  _apiBaseRated = 'https://api.themoviedb.org/3/movie/top_rated';
   _apiBasePopular = 'https://api.themoviedb.org/3/movie/popular';
   _apiBaseDetails = 'https://api.themoviedb.org/3/movie/';
-  async getResource() {
+  async getResource(page) {
     const options = {
       method: 'GET',
       headers: {
@@ -14,7 +12,7 @@ export default class MovieDBService {
       },
     };
     const res = await fetch(
-      `${this._apiBaseRated}?language=en-US&page=1`,
+      `${this._apiBaseRated}?language=en-US&page=${page}`,
       options
     );
 
@@ -22,7 +20,7 @@ export default class MovieDBService {
   }
 
   async getDetails(movieDbId) {
-    if (!movieDbId) return
+    if (!movieDbId) return;
     const options = {
       method: 'GET',
       headers: {
@@ -34,4 +32,6 @@ export default class MovieDBService {
     const res = await fetch(`${this._apiBaseDetails}${movieDbId}`, options);
     return await res.json();
   }
+  
+  
 }
