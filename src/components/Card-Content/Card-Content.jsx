@@ -13,13 +13,12 @@ const CardContent = ({
   },
 }) => {
   const _apiPosterbase = `https://image.tmdb.org/t/p/w500/`;
-
   return (
     <>
       <img
         className="movie-card--poster"
         alt="poster"
-        src={`${_apiPosterbase}${poster}`}
+        src={poster ? `${_apiPosterbase}${poster}`: '/noImage.png'}
       />
       <div className="movie-card--info">
         <ConfigProvider
